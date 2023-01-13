@@ -1,0 +1,16 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid-container{
+    display: grid;
+    width: 35vw;
+    height: auto;
+}
+
+.grid-box{
+    aspect-ratio: 1 / 1;
+    border: 1px solid black;
+}
