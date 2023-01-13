@@ -1,5 +1,7 @@
 const gridContainer = document.getElementById('grid-container');
+const colorPicker = document.getElementById('color-picker');
 let mouseDown = false;
+let userColor = colorPicker.value;
 
 function createGrid(width){
     gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
@@ -25,10 +27,17 @@ function updateMouseDown(e){
     }
 }
 
+function updateUserColor(e){
+    userColor = e.target.value;
+}
+
 function changeColor(e){
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
-        e.target.style.backgroundColor = 'red';
+        e.target.style.backgroundColor = userColor;
     }
 }
 
-createGrid(16);
+window.onload = () => {
+    createGrid(16);
+    colorPicker.addEventListener('input', updateUserColor);
+}
