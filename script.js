@@ -1,17 +1,19 @@
 const gridContainer = document.getElementById('grid-container');
-const colorPicker = document.getElementById('color-picker');
+const colorSelector = document.getElementById('color-selector');
+const colorMode = document.getElementById('color-mode');
+const eraserMode = document.getElementById('eraser-mode');
 let mouseDown = false;
-let userColor = colorPicker.value;
+let userColor = colorSelector.value;
 
 function createGrid(width){
     gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
     for (let i = 0; i < width * width; i++){
         const gridBox = document.createElement('div');
         gridBox.classList.add('grid-box');
-        gridBox.addEventListener('mouseover', changeColor);
+        gridBox.addEventListener('mouseover', draw);
         gridBox.addEventListener('mousedown', (e) => {
             updateMouseDown(e);
-            changeColor(e);
+            draw(e);
         });
         gridBox.addEventListener('mouseup', updateMouseDown);
         gridContainer.appendChild(gridBox);
@@ -27,17 +29,35 @@ function updateMouseDown(e){
     }
 }
 
-function updateUserColor(e){
-    userColor = e.target.value;
-}
+function updateUserColor(color){userColor = color;}
 
-function changeColor(e){
+function draw(e){
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
         e.target.style.backgroundColor = userColor;
     }
 }
 
+function changeColorMode(){
+    updateUserColor(colorSelector.value);
+    colorMode.classList.add('mode-select');
+    eraserMode.classList.remove('mode-select');
+}
+
+function changeEraseMode(){
+    updateUserColor('#ffffff');
+    colorMode.classList.remove('mode-select');
+    eraserMode.classList.add('mode-select');
+}
+
 window.onload = () => {
+    // default grid size
     createGrid(16);
-    colorPicker.addEventListener('input', updateUserColor);
+    // color mode set to default
+    colorMode.classList.add('mode-select');
+    //
+    colorSelector.addEventListener('input', changeColorMode);
+    colorSelector.addEventListener('change', changeColorMode);
+    //
+    colorMode.addEventListener('click', changeColorMode);
+    eraserMode.addEventListener('click', changeEraseMode);
 }

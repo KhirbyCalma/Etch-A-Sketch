@@ -16,3 +16,8 @@ main{
     aspect-ratio: 1 / 1;
     user-select: none;
 }
+
+.mode-select{
+    background-color: black;
+    color: white;
+}
