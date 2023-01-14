@@ -2,8 +2,11 @@ const gridContainer = document.getElementById('grid-container');
 const colorSelector = document.getElementById('color-selector');
 const colorMode = document.getElementById('color-mode');
 const eraserMode = document.getElementById('eraser-mode');
+const gridSizeSlider = document.getElementById('size-slider');
+const gridSizeOutput = document.getElementById('grid-size-output');
 let mouseDown = false;
 let userColor = colorSelector.value;
+let gridSize = gridSizeSlider.value;
 
 function createGrid(width){
     gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
@@ -31,6 +34,8 @@ function updateMouseDown(e){
 
 function updateUserColor(color){userColor = color;}
 
+function updateGridSize(size){gridSize = size;}
+
 function draw(e){
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
         e.target.style.backgroundColor = userColor;
@@ -49,6 +54,23 @@ function changeEraseMode(){
     eraserMode.classList.add('mode-select');
 }
 
+function clearGrid(){
+    while (gridContainer.firstChild){
+        gridContainer.removeChild(gridContainer.lastChild);
+    }
+}
+
+function resetGrid(){
+    clearGrid();
+    createGrid(gridSize);
+}
+
+function changeGridSize(e){
+    updateGridSize(e.target.value);
+    gridSizeOutput.textContent = `${gridSize} x ${gridSize}`;
+    resetGrid();
+}
+
 window.onload = () => {
     // default grid size
     createGrid(16);
@@ -60,4 +82,6 @@ window.onload = () => {
     //
     colorMode.addEventListener('click', changeColorMode);
     eraserMode.addEventListener('click', changeEraseMode);
+    //
+    gridSizeSlider.addEventListener('input', changeGridSize);
 }
