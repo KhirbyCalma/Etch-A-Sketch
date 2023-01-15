@@ -69,6 +69,7 @@ function changeGridSize(e){
     updateGridSize(e.target.value);
     gridSizeOutput.textContent = `${gridSize} x ${gridSize}`;
     resetGrid();
+    changeColorMode();
 }
 
 window.onload = () => {
