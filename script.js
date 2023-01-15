@@ -4,6 +4,7 @@ const colorMode = document.getElementById('color-mode');
 const eraserMode = document.getElementById('eraser-mode');
 const gridSizeSlider = document.getElementById('size-slider');
 const gridSizeOutput = document.getElementById('grid-size-output');
+const clearMode = document.getElementById('clear-mode');
 let mouseDown = false;
 let userColor = colorSelector.value;
 let gridSize = gridSizeSlider.value;
@@ -54,14 +55,21 @@ function changeEraseMode(){
     eraserMode.classList.add('mode-select');
 }
 
-function clearGrid(){
+function removeGrid(){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.lastChild);
     }
 }
 
+function clearGrid(){
+    const gridBoxes = document.getElementsByClassName('grid-box');
+    for (let i = 0; i < gridBoxes.length; i++) {
+        gridBoxes[i].style.backgroundColor = "white";
+    }
+}
+
 function resetGrid(){
-    clearGrid();
+    removeGrid();
     createGrid(gridSize);
 }
 
@@ -85,4 +93,6 @@ window.onload = () => {
     eraserMode.addEventListener('click', changeEraseMode);
     //
     gridSizeSlider.addEventListener('input', changeGridSize);
+    //
+    clearMode.addEventListener('click', clearGrid);
 }
