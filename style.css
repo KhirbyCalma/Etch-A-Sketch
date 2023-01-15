@@ -1,8 +1,40 @@
-main{
+body{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+
+/* HEADER */
+header{
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* BODY */
+main{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
 #grid-container{
@@ -10,7 +42,7 @@ main{
     display: grid;
     width: auto;
     height: 50vh;
-    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .grid-box{
@@ -18,7 +50,61 @@ main{
     user-select: none;
 }
 
-.mode-select{
+#color-selector{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+#color-selector::-webkit-color-swatch{
+    border: none;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#color-selector::-moz-color-swatch{
+    border: none;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.grid-controls{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-controls button{
+    padding: 1rem 2rem;
+    margin: 1rem 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 1rem;
     background-color: black;
+    border: none;
     color: white;
+    transition-duration: 0.25s;
+} 
+
+.grid-controls button:hover{
+    background-color: #FFC000;
+    border: none;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.grid-controls button:active{
+    transform: translateY(1rem);
+    border: none;
+  } 
+
+.grid-controls .mode-select{
+    background-color: #FFC000;
+    border: none;
 }

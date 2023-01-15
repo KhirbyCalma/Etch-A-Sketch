@@ -7,8 +7,12 @@
         <title>Etch-A-Sketch</title>
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
+        <header>Etch-A-Sketch</header>
         <main>
             <section id="grid-container">
                 
@@ -16,7 +20,7 @@
             <section class="grid-controls">
                 <div id="color-control">
                     <input type="color" id="color-selector" name="color-selector" value="#000000">
-                    <button id="color-mode"">Color Picker</button>
+                    <button id="color-mode">Draw</button>
                 </div>
                 <button id="eraser-mode">Eraser</button>
                 <div id="grid-size-control">
@@ -28,5 +32,8 @@
                 <button id="clear-mode">Clear</button>
             </section>
         </main>
+        <footer>
+            <p>Copyright &copy; Khirby Calma, <script>document.write(new Date().getFullYear());</script></p>
+        </footer>
     </body>
 </html>
