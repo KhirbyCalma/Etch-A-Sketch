@@ -34,6 +34,8 @@ main{
     justify-content: center;
     align-items: center;
     gap: 3rem;
+    margin: 3rem;
+    flex-wrap: wrap-reverse;
 }
 
 .grid-controls{
