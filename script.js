@@ -3,7 +3,8 @@ const gridSizeSlider = document.getElementById('grid-size-slider');
 const gridSizeOutput = document.getElementById('grid-size-output');
 const gridContainer = document.getElementById('grid-container');
 // GRID VARIABLES
-let defaultGridSize = gridSizeSlider.value;
+const defaultGridSize = gridSizeSlider.value;
+let mouseDown = false;
 // GRID FUNCTIONS
 updateGridSizeOutput(defaultGridSize);
 createGrid(defaultGridSize);
@@ -11,14 +12,19 @@ createGrid(defaultGridSize);
 gridSizeSlider.addEventListener('input', (event) => resetGrid(event.target.value));
 
 
-const colorSelector = document.getElementById('color-selector');
+// COLOR PICKER ELEMENTS
+const colorPicker = document.getElementById('color-picker');
+// COLOR PICKER VARIABLES
+const userColor = colorPicker.value;
+// COLOR PICKER FUNCTIONS
+colorPicker.addEventListener('input', (event) => changeColor(event.target.value));
+colorPicker.addEventListener('change', (event) => changeColor(event.target.value));
+
 const colorMode = document.getElementById('color-mode');
 const eraserMode = document.getElementById('eraser-mode');
 
 
 const clearMode = document.getElementById('clear-mode');
-let mouseDown = false;
-let userColor = colorSelector.value;
 
 
 // OTHER VARIABLES
@@ -62,8 +68,6 @@ function resetGrid(newGridSize){
     updateGridSizeOutput(newGridSize);
 }
 
-
-
 function updateMouseDown(e){
     if (e.type === 'mousedown'){
         mouseDown = true;
@@ -73,18 +77,21 @@ function updateMouseDown(e){
     }
 }
 
-function updateUserColor(color){userColor = color;}
-
-
-
 function draw(e){
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
         e.target.style.backgroundColor = userColor;
     }
 }
 
-function changeColorMode(){
-    updateUserColor(colorSelector.value);
+// COLOR PICKER FUNCTIONS
+function changeColor(color){userColor = color;}
+
+
+
+
+
+function changeColorMode(color){
+    updateUserColor(colorPicker.value);
     colorMode.classList.add('mode-select');
     eraserMode.classList.remove('mode-select');
 }
@@ -102,8 +109,7 @@ window.onload = () => {
     // color mode set to default
     colorMode.classList.add('mode-select');
     //
-    colorSelector.addEventListener('input', changeColorMode);
-    colorSelector.addEventListener('change', changeColorMode);
+
     //
     colorMode.addEventListener('click', changeColorMode);
     eraserMode.addEventListener('click', changeEraseMode);
