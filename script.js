@@ -1,10 +1,14 @@
-// GRID VARIABLES
-const gridSizeSlider = document.getElementById('size-slider');
+// GRID ELEMENTS
+const gridSizeSlider = document.getElementById('grid-size-slider');
 const gridSizeOutput = document.getElementById('grid-size-output');
 const gridContainer = document.getElementById('grid-container');
-let gridSize = gridSizeSlider.value;
-const defaultGridSize = gridSize;
-gridSizeSlider.addEventListener('input', changeGridSize);
+// GRID VARIABLES
+let defaultGridSize = gridSizeSlider.value;
+// GRID FUNCTIONS
+updateGridSizeOutput(defaultGridSize);
+createGrid(defaultGridSize);
+// GRID EVENT LISTENERS
+gridSizeSlider.addEventListener('input', (event) => resetGrid(event.target.value));
 
 
 const colorSelector = document.getElementById('color-selector');
@@ -42,7 +46,6 @@ function removeGrid(){
         gridContainer.removeChild(gridContainer.lastChild);
     }
 }
-function updateGridSize(size){gridSize = size;}
 
 function clearGrid(){
     const gridBoxes = document.getElementsByClassName('grid-box');
@@ -51,16 +54,12 @@ function clearGrid(){
     }
 }
 
-function resetGrid(){
-    removeGrid();
-    createGrid(gridSize);
-}
+function updateGridSizeOutput(size){ gridSizeOutput.textContent = `${size} x ${size}`; }
 
-function changeGridSize(e){
-    updateGridSize(e.target.value);
-    gridSizeOutput.textContent = `${gridSize} x ${gridSize}`;
-    resetGrid();
-    changeColorMode();
+function resetGrid(newGridSize){
+    removeGrid();
+    createGrid(newGridSize);
+    updateGridSizeOutput(newGridSize);
 }
 
 
@@ -114,4 +113,3 @@ window.onload = () => {
     clearMode.addEventListener('click', clearGrid);
 }
 
-createGrid(DEFAULT_GRID_SIZE);
