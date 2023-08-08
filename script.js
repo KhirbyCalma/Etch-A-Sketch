@@ -1,14 +1,27 @@
+// GRID VARIABLES
+const gridSizeSlider = document.getElementById('size-slider');
+const gridSizeOutput = document.getElementById('grid-size-output');
 const gridContainer = document.getElementById('grid-container');
+let gridSize = gridSizeSlider.value;
+const defaultGridSize = gridSize;
+gridSizeSlider.addEventListener('input', changeGridSize);
+
+
 const colorSelector = document.getElementById('color-selector');
 const colorMode = document.getElementById('color-mode');
 const eraserMode = document.getElementById('eraser-mode');
-const gridSizeSlider = document.getElementById('size-slider');
-const gridSizeOutput = document.getElementById('grid-size-output');
+
+
 const clearMode = document.getElementById('clear-mode');
 let mouseDown = false;
 let userColor = colorSelector.value;
-let gridSize = gridSizeSlider.value;
 
+
+// OTHER VARIABLES
+const COLOR_WHITE = "#FFFFFF";
+
+
+// GRID FUNCTIONS
 function createGrid(width){
     gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
     for (let i = 0; i < width * width; i++){
@@ -24,6 +37,34 @@ function createGrid(width){
     }
 }
 
+function removeGrid(){
+    while (gridContainer.firstChild){
+        gridContainer.removeChild(gridContainer.lastChild);
+    }
+}
+function updateGridSize(size){gridSize = size;}
+
+function clearGrid(){
+    const gridBoxes = document.getElementsByClassName('grid-box');
+    for (let i = 0; i < gridBoxes.length; i++) {
+        gridBoxes[i].style.backgroundColor = COLOR_WHITE;
+    }
+}
+
+function resetGrid(){
+    removeGrid();
+    createGrid(gridSize);
+}
+
+function changeGridSize(e){
+    updateGridSize(e.target.value);
+    gridSizeOutput.textContent = `${gridSize} x ${gridSize}`;
+    resetGrid();
+    changeColorMode();
+}
+
+
+
 function updateMouseDown(e){
     if (e.type === 'mousedown'){
         mouseDown = true;
@@ -35,7 +76,7 @@ function updateMouseDown(e){
 
 function updateUserColor(color){userColor = color;}
 
-function updateGridSize(size){gridSize = size;}
+
 
 function draw(e){
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
@@ -55,34 +96,10 @@ function changeEraseMode(){
     eraserMode.classList.add('mode-select');
 }
 
-function removeGrid(){
-    while (gridContainer.firstChild){
-        gridContainer.removeChild(gridContainer.lastChild);
-    }
-}
 
-function clearGrid(){
-    const gridBoxes = document.getElementsByClassName('grid-box');
-    for (let i = 0; i < gridBoxes.length; i++) {
-        gridBoxes[i].style.backgroundColor = "white";
-    }
-}
 
-function resetGrid(){
-    removeGrid();
-    createGrid(gridSize);
-}
-
-function changeGridSize(e){
-    updateGridSize(e.target.value);
-    gridSizeOutput.textContent = `${gridSize} x ${gridSize}`;
-    resetGrid();
-    changeColorMode();
-}
 
 window.onload = () => {
-    // default grid size
-    createGrid(16);
     // color mode set to default
     colorMode.classList.add('mode-select');
     //
@@ -92,7 +109,9 @@ window.onload = () => {
     colorMode.addEventListener('click', changeColorMode);
     eraserMode.addEventListener('click', changeEraseMode);
     //
-    gridSizeSlider.addEventListener('input', changeGridSize);
+
     //
     clearMode.addEventListener('click', clearGrid);
 }
+
+createGrid(DEFAULT_GRID_SIZE);
