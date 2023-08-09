@@ -5,7 +5,7 @@ const gridContainer = document.getElementById('grid-container');
 // GRID VARIABLES
 const defaultGridSize = gridSizeSlider.value;
 let mouseDown = false;
-// GRID FUNCTIONS
+// GRID STARTING FUNCTIONS
 updateGridSizeOutput(defaultGridSize);
 createGrid(defaultGridSize);
 // GRID EVENT LISTENERS
@@ -15,20 +15,30 @@ gridSizeSlider.addEventListener('input', (event) => resetGrid(event.target.value
 // COLOR PICKER ELEMENTS
 const colorPicker = document.getElementById('color-picker');
 // COLOR PICKER VARIABLES
-const userColor = colorPicker.value;
-// COLOR PICKER FUNCTIONS
-colorPicker.addEventListener('input', (event) => changeColor(event.target.value));
-colorPicker.addEventListener('change', (event) => changeColor(event.target.value));
+let userColor = colorPicker.value;
+// COLOR PICKER LISTENERS
+colorPicker.addEventListener('input', (event) => {
+    changeColor(event.target.value);
+    changeToDrawMode();
+});
+colorPicker.addEventListener('change', (event) => {
+    changeColor(event.target.value);
+    changeToDrawMode();
+});
 
-const colorMode = document.getElementById('color-mode');
+
+// DRAW, ERASE, AND CLEAR ELEMENTS
+const drawMode = document.getElementById('draw-mode');
 const eraserMode = document.getElementById('eraser-mode');
-
-
 const clearMode = document.getElementById('clear-mode');
-
-
-// OTHER VARIABLES
+// DRAW, ERASE, AND CLEAR VARIABLES
 const COLOR_WHITE = "#FFFFFF";
+// DRAW, ERASE, AND CLEAR LISTENERS
+drawMode.addEventListener('click', changeToDrawMode);
+eraserMode.addEventListener('click', changeToEraseMode);
+clearMode.addEventListener('click', clearGrid);
+// DRAW, ERASE, AND CLEAR STYLING
+drawMode.classList.add('selected-mode');
 
 
 // GRID FUNCTIONS
@@ -50,13 +60,6 @@ function createGrid(width){
 function removeGrid(){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.lastChild);
-    }
-}
-
-function clearGrid(){
-    const gridBoxes = document.getElementsByClassName('grid-box');
-    for (let i = 0; i < gridBoxes.length; i++) {
-        gridBoxes[i].style.backgroundColor = COLOR_WHITE;
     }
 }
 
@@ -83,39 +86,28 @@ function draw(e){
     }
 }
 
+
 // COLOR PICKER FUNCTIONS
-function changeColor(color){userColor = color;}
+function getCurrentColor(){ return colorPicker.value; }
+function changeColor(color){ userColor = color; }
 
 
-
-
-
-function changeColorMode(color){
-    updateUserColor(colorPicker.value);
-    colorMode.classList.add('mode-select');
-    eraserMode.classList.remove('mode-select');
+// DRAW, ERASE, AND CLEAR MODES
+function changeToDrawMode() {
+    userColor = getCurrentColor();
+    drawMode.classList.add('selected-mode');
+    eraserMode.classList.remove('selected-mode');
 }
 
-function changeEraseMode(){
-    updateUserColor('#ffffff');
-    colorMode.classList.remove('mode-select');
-    eraserMode.classList.add('mode-select');
+function changeToEraseMode(){
+    userColor = COLOR_WHITE;
+    drawMode.classList.remove('selected-mode');
+    eraserMode.classList.add('selected-mode');
 }
 
-
-
-
-window.onload = () => {
-    // color mode set to default
-    colorMode.classList.add('mode-select');
-    //
-
-    //
-    colorMode.addEventListener('click', changeColorMode);
-    eraserMode.addEventListener('click', changeEraseMode);
-    //
-
-    //
-    clearMode.addEventListener('click', clearGrid);
+function clearGrid(){
+    const gridBoxes = document.getElementsByClassName('grid-box');
+    for (let i = 0; i < gridBoxes.length; i++) {
+        gridBoxes[i].style.backgroundColor = COLOR_WHITE;
+    }
 }
-
