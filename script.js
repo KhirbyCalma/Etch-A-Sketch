@@ -87,13 +87,13 @@ function draw(e){
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
         switch (currentMode) {
             case "DRAW":
-                e.target.style.backgroundColor = userColor;
+                e.target.style.backgroundColor = getCurrentColor();
                 break;
             case "RAINBOW":
                 e.target.style.backgroundColor = getRandomColor();
                 break;
             case "ERASE":
-                e.target.style.backgroundColor = userColor;
+                e.target.style.backgroundColor = COLOR_WHITE;
                 break;
         }
         
@@ -115,7 +115,6 @@ function getRandomColor() {
 
 // DRAW, ERASE, AND CLEAR MODES
 function changeToDrawMode() {
-    userColor = getCurrentColor();
     currentMode = "DRAW";
     drawMode.classList.add('selected-mode');
     rainbowMode.classList.remove('selected-mode');
@@ -130,7 +129,6 @@ function changeToRainbowMode() {
 }
 
 function changeToEraseMode(){
-    userColor = COLOR_WHITE;
     currentMode = "ERASE";
     drawMode.classList.remove('selected-mode');
     rainbowMode.classList.remove('selected-mode');
