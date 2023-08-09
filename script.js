@@ -1,10 +1,15 @@
+// BODY (WHOLE SCREEN)
+const body = document.body;
+let mouseDown = false;
+body.addEventListener("mousedown", (e) => updateMouseDown(e));
+body.addEventListener("mouseup", (e) => updateMouseDown(e));
+
 // GRID ELEMENTS
 const gridSizeSlider = document.getElementById('grid-size-slider');
 const gridSizeOutput = document.getElementById('grid-size-output');
 const gridContainer = document.getElementById('grid-container');
 // GRID VARIABLES
 const defaultGridSize = gridSizeSlider.value;
-let mouseDown = false;
 // GRID STARTING FUNCTIONS
 updateGridSizeOutput(defaultGridSize);
 createGrid(defaultGridSize);
@@ -50,12 +55,8 @@ function createGrid(width){
     for (let i = 0; i < width * width; i++){
         const gridBox = document.createElement('div');
         gridBox.classList.add('grid-box');
-        gridBox.addEventListener('mouseover', draw);
-        gridBox.addEventListener('mousedown', (e) => {
-            updateMouseDown(e);
-            draw(e);
-        });
-        gridBox.addEventListener('mouseup', updateMouseDown);
+        gridBox.addEventListener('mouseover', (e) => draw(e));
+        gridBox.addEventListener('mousedown', (e) => draw(e));
         gridContainer.appendChild(gridBox);
     }
 }
@@ -75,15 +76,12 @@ function resetGrid(newGridSize){
 }
 
 function updateMouseDown(e){
-    if (e.type === 'mousedown'){
-        mouseDown = true;
-    }
-    else{
-        mouseDown = false;
-    }
+    if (e.type === 'mousedown') mouseDown = true;
+    else mouseDown = false;
 }
 
 function draw(e){
+    console.log(e.type);
     if (mouseDown || (e.type === 'mouseover' && mouseDown)){
         switch (currentMode) {
             case "DRAW":
