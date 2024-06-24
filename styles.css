@@ -1,0 +1,14 @@
+/* GLOBAL */
+html {
+    scroll-behavior: smooth;
+}
+
+html * {
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
