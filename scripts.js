@@ -1,3 +1,12 @@
+// get color picker to get color information from
+const colorPicker = document.getElementById("color-picker");
+// initialize global drawing color
+let drawingColor = colorPicker.value;
+// listen for any color changes to update global drawing color
+colorPicker.addEventListener("input", () => {
+    drawingColor = colorPicker.value;
+});
+
 // listen for mouse down events for grid box condition
 const body = document.querySelector("body");
 let mouseDown = false;
@@ -18,15 +27,14 @@ for (let i = 0; i < 16; i++) {
         mousedown instead of click because click requires mouse down and mouse up 
     */
     gridBox.addEventListener("mousedown", () => {
-        gridBox.style.backgroundColor = "grey";
+        gridBox.style.backgroundColor = drawingColor;
     });
     // listening to both mouseover AND mousedown
     gridBox.addEventListener("mouseover", () => {
         if (mouseDown) {
-            gridBox.style.backgroundColor = "grey";
+            gridBox.style.backgroundColor = drawingColor;
         }
     });
     // add to grid container
     gridContainer.appendChild(gridBox);
 }
-
