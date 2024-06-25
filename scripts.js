@@ -1,3 +1,9 @@
+// listen for mouse down events for grid box condition
+const body = document.querySelector("body");
+let mouseDown = false;
+body.addEventListener("mousedown", () => mouseDown = true);
+body.addEventListener("mouseup", () => mouseDown = false);
+
 // get grid elements to manipulate
 const gridContainer = document.getElementById("grid-container");
 const gridColumnsSelector = document.getElementById("grid-columns-selector");
@@ -68,10 +74,3 @@ const eraser = document.getElementById("eraser");
 eraser.addEventListener("click", () => {
     drawingColor = "white";
 });
-
-// listen for mouse down events for grid box condition
-const body = document.querySelector("body");
-let mouseDown = false;
-body.addEventListener("mousedown", () => mouseDown = true);
-body.addEventListener("mouseup", () => mouseDown = false);
-
