@@ -106,7 +106,7 @@ function updateDrawingModeAndColor(event) {
 }
 
 function getDrawingColor() {
-    switch (mode) {
+    switch (drawingMode) {
         case ("color-picker"):
         case ("draw"):
         case ("eraser"):
