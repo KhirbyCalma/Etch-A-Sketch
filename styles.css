@@ -1,3 +1,4 @@
+/* DESIGN FOR MOBILE FIRST */
 /* GLOBAL */
 html * {
     font-family: "Roboto", sans-serif;
@@ -19,8 +20,9 @@ main {
 
 #grid-container {
     display: grid;
+    border: 1px solid black;
     grid-template-columns: repeat(4, 1fr);
-    /* DESIGN FOR MOBILE FIRST (MOBILE S) (MEDIA QUERIES FOR MORE SIZES) */
+    /* MOBILE S */
     width: 85%;
 }
 
@@ -66,7 +68,8 @@ main {
     }
 }
 
-#grid-container .grid-box{
-    border: 1px solid black;
+#grid-container .grid-box {
     aspect-ratio: 1 / 1;
+    /* disables grid box from being dragged */
+    user-select: none;
 }
