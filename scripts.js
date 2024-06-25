@@ -52,13 +52,11 @@ function buildGrid(newGridColumns) {
                 cannot listen to multiple events so that is why multiple event listeners
                 mousedown instead of click because click requires mouse down and mouse up 
             */
-            gridBox.addEventListener("mousedown", () => {
-                gridBox.style.backgroundColor = drawingColor;
-            });
+            gridBox.addEventListener("mousedown", (event) => draw(event));
             // listening to both mouseover AND mousedown
-            gridBox.addEventListener("mouseover", () => {
+            gridBox.addEventListener("mouseover", (event) => {
                 if (mouseDown) {
-                    gridBox.style.backgroundColor = drawingColor;
+                    draw(event);
                 }
             });
             // add to grid container
@@ -85,4 +83,8 @@ function updateDrawingColor(event) {
         default:
             console.log('ERROR');
     }
+}
+
+function draw(event) {
+    event.target.style.backgroundColor = drawingColor;
 }
