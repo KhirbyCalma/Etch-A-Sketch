@@ -1,19 +1,37 @@
-// listen for mouse down events for grid box condition
+// QUERY SELECTORS
 const body = document.querySelector("body");
-let mouseDown = false;
-body.addEventListener("mousedown", () => mouseDown = true);
-body.addEventListener("mouseup", () => mouseDown = false);
-
-// get grid elements to manipulate
 const gridContainer = document.getElementById("grid-container");
 const gridColumnsSelector = document.getElementById("grid-columns-selector");
 const gridSizeTextOutput = document.getElementById("grid-size-text-output");
+const colorPicker = document.getElementById("color-picker");
+const draw = document.getElementById("draw");
+const eraser = document.getElementById("eraser");
+const clear = document.getElementById("clear");
 
-let gridColumns = gridColumnsSelector.value;
-
+// EVENT LISTENERS
+body.addEventListener("mousedown", () => mouseDown = true);
+body.addEventListener("mouseup", () => mouseDown = false);
 document.addEventListener("DOMContentLoaded", () => buildGrid(gridColumns));
 gridColumnsSelector.addEventListener("input", () => buildGrid(gridColumnsSelector.value));
+colorPicker.addEventListener("input", () => drawingColor = colorPicker.value);
+colorPicker.addEventListener("input", () => drawingColor = colorPicker.value);
+draw.addEventListener("click", () => drawingColor = colorPicker.value);
+eraser.addEventListener("click", () => drawingColor = "white");
+clear.addEventListener("click", () => {
+    // get all grid boxes to manipulate their background color
+    const gridBoxes = document.getElementsByClassName("grid-box");
+    // go through each grid box to change their background color to white
+    for (const gridBox of gridBoxes) {
+        gridBox.style.backgroundColor = "white";
+    }
+});
 
+// INITIALIZED VARIABLES
+let mouseDown = false;
+let gridColumns = gridColumnsSelector.value;
+let drawingColor = colorPicker.value;
+
+// FUNCTIONS
 function buildGrid(newGridColumns) {
     // update grid size text output
     gridSizeTextOutput.textContent = `${newGridColumns} x ${newGridColumns}`;
@@ -54,40 +72,3 @@ function buildGrid(newGridColumns) {
         }
     }
 }
-
-// get color picker to get color information from
-const colorPicker = document.getElementById("color-picker");
-// initialize global drawing color
-let drawingColor = colorPicker.value;
-// listen for any color changes to update global drawing color
-colorPicker.addEventListener("input", () => {
-    drawingColor = colorPicker.value;
-});
-// clicking it (not changing the color) will go back to drawing 
-colorPicker.addEventListener("input", () => {
-    drawingColor = colorPicker.value;
-});
-
-// get draw button to listen to
-const draw = document.getElementById("draw");
-// list for user clicking button to initiate drawing mode
-draw.addEventListener("click", () => drawingColor = colorPicker.value);
-
-// get eraser to see if user wants to reset grid box color to white
-const eraser = document.getElementById("eraser");
-// listen for user clicking button to initiate eraser mode
-eraser.addEventListener("click", () => {
-    drawingColor = "white";
-});
-
-// get clear button to listen to
-const clear = document.getElementById("clear");
-// listen for user clicking button to initiate eraser mode
-clear.addEventListener("click", () => {
-    // get all grid boxes to manipulate their background color
-    const gridBoxes = document.getElementsByClassName("grid-box");
-    // go through each grid box to change their background color to white
-    for (const gridBox of gridBoxes) {
-        gridBox.style.backgroundColor = "white";
-    }
-});
