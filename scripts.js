@@ -74,7 +74,6 @@ function buildGrid(newGridColumns) {
 }
 
 function updateDrawingColor(event) {
-    console.log(event.target.id);
     switch (event.target.id) {
         case ("draw"):
         case ("color-picker"):
