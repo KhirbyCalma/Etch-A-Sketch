@@ -1,3 +1,6 @@
+// CONSTANTS
+const HEX_COLOR_WHITE = "#FFFFFF";
+
 // QUERY SELECTORS
 const body = document.querySelector("body");
 const gridContainer = document.getElementById("grid-container");
@@ -5,6 +8,7 @@ const gridColumnsSelector = document.getElementById("grid-columns-selector");
 const gridSizeTextOutput = document.getElementById("grid-size-text-output");
 const colorPicker = document.getElementById("color-picker");
 const drawBtn = document.getElementById("draw");
+const rainbowBtn = document.getElementById("rainbow");
 const eraserBtn = document.getElementById("eraser");
 const clearBtn = document.getElementById("clear");
 
@@ -13,21 +17,23 @@ document.addEventListener("DOMContentLoaded", () => buildGrid(gridColumns));
 body.addEventListener("mousedown", () => mouseDown = true);
 body.addEventListener("mouseup", () => mouseDown = false);
 gridColumnsSelector.addEventListener("input", () => buildGrid(gridColumnsSelector.value));
-colorPicker.addEventListener("input", (event) => updateDrawingColor(event));
-colorPicker.addEventListener("click", (event) => updateDrawingColor(event));
-drawBtn.addEventListener("click", (event) => updateDrawingColor(event));
-eraserBtn.addEventListener("click", (event) => updateDrawingColor(event));
+colorPicker.addEventListener("input", (event) => updateDrawingModeAndColor(event));
+colorPicker.addEventListener("click", (event) => updateDrawingModeAndColor(event));
+drawBtn.addEventListener("click", (event) => updateDrawingModeAndColor(event));
+rainbowBtn.addEventListener("click", (event) => updateDrawingModeAndColor(event));
+eraserBtn.addEventListener("click", (event) => updateDrawingModeAndColor(event));
 clearBtn.addEventListener("click", () => {
     // get all grid boxes to manipulate their background color
     const gridBoxes = document.getElementsByClassName("grid-box");
     // go through each grid box to change their background color to white
     for (const gridBox of gridBoxes) {
-        gridBox.style.backgroundColor = "white";
+        gridBox.style.backgroundColor = HEX_COLOR_WHITE;
     }
 });
 
 // INITIALIZED VARIABLES
 let mouseDown = false;
+let drawingMode = 'draw';
 let gridColumns = gridColumnsSelector.value;
 let drawingColor = colorPicker.value;
 
@@ -71,20 +77,47 @@ function buildGrid(newGridColumns) {
     }
 }
 
-function updateDrawingColor(event) {
+function getRandomHexColor() {
+    let newDrawingColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+    while (newDrawingColor === drawingColor) {
+        newDrawingColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+    }
+    return newDrawingColor;
+}
+
+function updateDrawingModeAndColor(event) {
     switch (event.target.id) {
-        case ("draw"):
         case ("color-picker"):
+        case ("draw"):
+            drawingMode = event.target.id;
             drawingColor = colorPicker.value;
             break;
-        case ("eraser"):
-            drawingColor = "white";
+        case ("rainbow"):
+            drawingMode = event.target.id;
+            drawingColor = getRandomHexColor();
+            break;
+        case ("eraser"): 
+            drawingMode = event.target.id;
+            drawingColor = HEX_COLOR_WHITE;
             break;
         default:
             console.log('ERROR');
     }
 }
 
+function getDrawingColor() {
+    switch (mode) {
+        case ("color-picker"):
+        case ("draw"):
+        case ("eraser"):
+            return drawingColor;
+        case ("rainbow"):
+            return getRandomHexColor();
+        default:
+            console.log('ERROR');
+    }
+}
+
 function draw(event) {
-    event.target.style.backgroundColor = drawingColor;
+    event.target.style.backgroundColor = getDrawingColor();
 }
