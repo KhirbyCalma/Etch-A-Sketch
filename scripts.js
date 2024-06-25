@@ -74,3 +74,15 @@ const eraser = document.getElementById("eraser");
 eraser.addEventListener("click", () => {
     drawingColor = "white";
 });
+
+// get clear button to listen to
+const clear = document.getElementById("clear");
+// listen for user clicking button to initiate eraser mode
+clear.addEventListener("click", () => {
+    // get all grid boxes to manipulate their background color
+    const gridBoxes = document.getElementsByClassName("grid-box");
+    // go through each grid box to change their background color to white
+    for (const gridBox of gridBoxes) {
+        gridBox.style.backgroundColor = "white";
+    }
+});
