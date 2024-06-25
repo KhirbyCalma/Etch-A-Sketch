@@ -6,6 +6,17 @@ let drawingColor = colorPicker.value;
 colorPicker.addEventListener("input", () => {
     drawingColor = colorPicker.value;
 });
+// clicking it (not changing the color) will go back to drawing 
+colorPicker.addEventListener("input", () => {
+    drawingColor = colorPicker.value;
+});
+
+// get eraser to see if user wants to reset grid box color to white
+const eraser = document.getElementById("eraser");
+// list for user clicking button to initiate eraser mode
+eraser.addEventListener("click", () => {
+    drawingColor = "white";
+});
 
 // listen for mouse down events for grid box condition
 const body = document.querySelector("body");
