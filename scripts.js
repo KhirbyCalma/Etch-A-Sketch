@@ -68,6 +68,11 @@ colorPicker.addEventListener("input", () => {
     drawingColor = colorPicker.value;
 });
 
+// get draw button to listen to
+const draw = document.getElementById("draw");
+// list for user clicking button to initiate drawing mode
+draw.addEventListener("click", () => drawingColor = colorPicker.value);
+
 // get eraser to see if user wants to reset grid box color to white
 const eraser = document.getElementById("eraser");
 // listen for user clicking button to initiate eraser mode
