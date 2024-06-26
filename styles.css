@@ -13,9 +13,16 @@ body {
 /* MAIN CONTENT */
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1;
+}
+
+section#etch-a-sketch {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 #grid-container {
@@ -23,50 +30,50 @@ main {
     border: 1px solid black;
     grid-template-columns: repeat(4, 1fr);
     /* MOBILE S */
-    width: 85%;
+    /* width: 85%; */
 }
 
 /* MOBILE M */
-@media only screen and (min-width: 320px) {
+/* @media only screen and (min-width: 320px) {
     #grid-container {
         width: 80%;
     }
-}
+} */
 
 /* MOBILE L */
-@media only screen and (min-width: 375px) {
+/* @media only screen and (min-width: 375px) {
     #grid-container {
         width: 75%;
     }
-}
+} */
 
 /* MOBILE L */
-@media only screen and (min-width: 425px) {
+/* @media only screen and (min-width: 425px) {
     #grid-container {
         width: 70%;
     }
-}
+} */
 
 /* TABLET */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
     #grid-container {
         width: 50%;
     }
-}
+} */
 
 /* LAPTOP */
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
     #grid-container {
         width: 40%;
     }
-}
+} */
 
 /* LAPTOP L */
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
     #grid-container {
         width: 30%;
     }
-}
+} */
 
 #grid-container .grid-box {
     aspect-ratio: 1 / 1;

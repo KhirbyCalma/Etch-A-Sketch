@@ -15,16 +15,18 @@
             <h1>Etch-A-Sketch</h1>
         </header>
         <main>
-            <div id="grid-container">
-                
-            </div>
-            <input type="color" id="color-picker" value="#000000">
-            <button type="button" id="draw">Draw</button>
-            <button type="button" id="rainbow">Rainbow</button>
-            <button type="button" id="eraser">Eraser</button>
-            <button type="button" id="clear">Clear</button>
-            <input type="range" min="1" max="64" value="4" id="grid-columns-selector">
-            <p id="grid-size-text-output"></p>
+            <section id="etch-a-sketch">
+                <div id="grid-container"></div>
+                <div id="grid-controls">
+                    <input type="color" id="color-picker" value="#000000">
+                    <button type="button" id="draw">Draw</button>
+                    <button type="button" id="rainbow">Rainbow</button>
+                    <button type="button" id="eraser">Eraser</button>
+                    <button type="button" id="clear">Clear</button>
+                    <input type="range" min="1" max="64" value="4" id="grid-columns-selector">
+                    <p id="grid-size-text-output"></p>
+                </div>
+            </section>
         </main>
         <footer>
             <p>Copyright &copy; Khirby Calma <script>document.write(new Date().getFullYear())</script></p>
