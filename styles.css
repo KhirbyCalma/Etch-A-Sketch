@@ -24,6 +24,8 @@ section#etch-a-sketch {
     flex-direction: column;
     gap: 24px;
     padding: 24px;
+    /* CREDIT TO: https://getcssscan.com/css-box-shadow-examples (#89) */
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     /* MOBILE S to L (0px to 320px) */
     width: 90%;
 }
