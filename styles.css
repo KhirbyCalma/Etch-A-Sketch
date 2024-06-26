@@ -8,6 +8,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #FAF9F6;
+}
+
+/* HEADER */
+header, footer {
+    text-align: center;
+    padding: 24px;
 }
 
 /* MAIN CONTENT */
@@ -24,6 +31,7 @@ section#etch-a-sketch {
     flex-direction: column;
     gap: 24px;
     padding: 24px;
+    background-color: white;
     /* CREDIT TO: https://getcssscan.com/css-box-shadow-examples (#89) */
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     /* MOBILE S to L (0px to 320px) */
@@ -53,7 +61,8 @@ section#etch-a-sketch {
 
 #grid-container {
     display: grid;
-    border: 1px solid black;
+    /* CREDIT TO: https://getcssscan.com/css-box-shadow-examples #44 */
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     grid-template-columns: repeat(4, 1fr);
 }
 
