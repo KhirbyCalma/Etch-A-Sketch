@@ -41,21 +41,28 @@ section#etch-a-sketch {
 /* TABLET */
 @media only screen and (min-width: 426px) and (max-width: 768px) {
     section#etch-a-sketch {
-        width: 70%;
+        width: 50%;
     }
 }
 
-/* LAPTOP and LAPTOP L */
-@media only screen and (min-width: 769px) and (max-width: 1440px) {
+/* LAPTOP */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
     section#etch-a-sketch {
         width: 40%;
+    }
+}
+
+/* LAPTOP L */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    section#etch-a-sketch {
+        width: 30%;
     }
 }
 
 /* 4K and ABOVE */
 @media only screen and (min-width: 1441px) {
     section#etch-a-sketch {
-        width: 30%;
+        width: 25%;
     }
 }
 
