@@ -165,3 +165,9 @@ section#etch-a-sketch {
 #grid-controls #grid-size-controls {
     text-align: center;
 }
+
+/* if button control the current mode, add styling */
+#grid-controls button.current-mode {
+    background-color: black;
+    color: white;
+}

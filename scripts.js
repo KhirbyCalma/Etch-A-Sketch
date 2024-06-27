@@ -76,6 +76,8 @@ function buildGrid(newGridColumns) {
             gridContainer.removeChild(gridContainer.lastChild);
         }
     }
+
+
 }
 
 function getRandomHexColor() {
@@ -103,6 +105,15 @@ function updateDrawingModeAndColor(event) {
             break;
         default:
             console.log('ERROR');
+    }
+    // remove any button control that has current mode styling
+    const currentModeButton = document.querySelector(".current-mode");
+    currentModeButton.classList.remove("current-mode");
+    // add current mode styling to selected button control
+    if (event.target.id === "color-picker") {
+        drawBtn.classList.add("current-mode");
+    } else {
+        event.target.classList.add("current-mode");
     }
 }
 
