@@ -43,6 +43,7 @@ function buildGrid(newGridColumns) {
     gridSizeTextOutput.textContent = `${newGridColumns} x ${newGridColumns}`;
     // update grid css to dynamically adapt to grid size
     gridContainer.style.gridTemplateColumns = `repeat(${newGridColumns}, 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${newGridColumns}, 1fr)`;
     // make gridboxes
     let newGridBoxAmount = newGridColumns * newGridColumns;
     let oldGridBoxAmount = gridContainer.childElementCount;
