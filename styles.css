@@ -70,3 +70,22 @@ section#etch-a-sketch {
     /* disables grid box from being dragged */
     user-select: none;
 }
+
+#grid-controls #color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+}
+
+#grid-controls #color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+}
+
+#grid-controls #color-picker::-moz-color-swatch{ 
+    border-radius: 50%;
+}
