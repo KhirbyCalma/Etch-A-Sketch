@@ -71,6 +71,13 @@ section#etch-a-sketch {
     user-select: none;
 }
 
+#grid-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
 #grid-controls #color-picker {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -147,4 +154,8 @@ section#etch-a-sketch {
   color: #DDDDDD;
   cursor: not-allowed;
   opacity: 1;
+}
+
+#grid-controls #grid-size-controls {
+    text-align: center;
 }
